@@ -22,6 +22,10 @@ PARAM$minsplit <- 850
 PARAM$minbucket <- 400
 PARAM$maxdepth <- 4
 
+#PARAM$minsplit <- 1000
+#PARAM$minbucket <- 1000
+#PARAM$maxdepth <- 3
+
 #------------------------------------------------------------------------------
 # particionar agrega una columna llamada fold a un dataset
 #   que consiste en una particion estratificada segun agrupa

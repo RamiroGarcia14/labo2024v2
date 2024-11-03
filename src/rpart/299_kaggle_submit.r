@@ -10,9 +10,9 @@ PARAM <- list()
 PARAM$modalidad <- "conceptual"
 
 PARAM$rpart <- list (
-  "cp" = -0.9,
-  "minsplit" = 10,
-  "minbucket" = 10,
+  "cp" = -0.5,
+  "minsplit" = 850,
+  "minbucket" = 400,
   "maxdepth" = 4
 )
 

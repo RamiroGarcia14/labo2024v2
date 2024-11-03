@@ -12,8 +12,8 @@ require("primes")
 
 PARAM <- list()
 # reemplazar por su primer semilla
-PARAM$semilla_primigenia <- 699989
-PARAM$qsemillas <- 20
+PARAM$semilla_primigenia <- 760007L
+PARAM$qsemillas <- 50
 
 PARAM$training_pct <- 70L  # entre  1L y 99L 
 
@@ -141,15 +141,14 @@ tb_grid_search_detalle <- data.table(
 
 n=0
 
-for (vminbucket in c(10,20,50,100)) {
-  for (vcp in c(-0.25,-0.5,-0.75,-0.9)) {
-    for (vmax_depth in c(4, 6, 8, 10, 12)) {
-      for (vmin_split in c(1000, 800, 600, 400, 200, 100, 50, 20, 10)) {
+for (vminbucket in c(100,200,400,250,25,50)) {
+    for (vmax_depth in c(2,3,4,5, 6)) {
+      for (vmin_split in c(900,850,800,750,725,700,650,600)) {
         # notar como se agrega
         
         # vminsplit  minima cantidad de registros en un nodo para hacer el split
         param_basicos <- list(
-          "cp" = vcp, # complejidad minima
+          "cp" = -0.5, # complejidad minima
           "maxdepth" = vmax_depth, # profundidad máxima del arbol
           "minsplit" = vmin_split, # tamaño minimo de nodo para hacer split
           "minbucket" = vminbucket # minima cantidad de registros en una hoja
@@ -167,7 +166,7 @@ for (vminbucket in c(10,20,50,100)) {
         print(n)
       }
     }
-  }
+  
       # grabo cada vez TODA la tabla en el loop mas externo
       fwrite( tb_grid_search_detalle,
               file = "gridsearch_detalle.txt",
@@ -189,7 +188,7 @@ setorder( tb_grid_search, -ganancia_mean )
 tb_grid_search[, id := .I ]
 
 fwrite( tb_grid_search,
-        file = "gridsearch.txt",
+        file = "gridsearch3.txt",
         sep = "\t"
 )
 
